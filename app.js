@@ -15,30 +15,36 @@ const game = () => {
 };
 // play match 
 const playMatch = () => {
-    const options = document.querySelectorAll(".option button");
-    const playerHand = document.querySelectorAll("player-hand");
-    const computerHand = document.querySelectorAll(".computer-hand");
+    const options = document.querySelectorAll(".options button");
+    const playerHand = document.querySelector(".player-hand");
+    const computerHand = document.querySelector(".computer-hand");
     const hands = document.querySelectorAll(".hands img");
-    hands.forEach = (hand => {
+    
+    hands.forEach(hand => {
         hand.addEventListener("animationend", function() {
-            this.style.animation = "";
-    
+          this.style.animation = "";
+        });
       });
-    
-    });
-    // computer option 
-    const computerOption = ["rock", "paper", "scissors"];
+      //Computer Options
+      const computerOptions = ["rock", "paper", "scissors"];
     options.forEach(option => {
         option.addEventListener("click", function() {
             // computer choice 
             const computerNumber = Math.floor(Math.random() * 3);
-            const computerChoice = computerOption[computerNumber];
+            const computerChoice = computerOptions[computerNumber];
 
-        })
-    })
-
-    }
-}
-
-
-
+            setTimeout(() => {
+                //Here is where we call compare hands
+                compareHands(this.textContent, computerChoice);
+                //Update Images
+                playerHand.src = `img/${this.textContent}.png`;
+                computerHand.src = `img/${computerChoice}.png`;
+              }, 2000);
+              //Animation
+              playerHand.style.animation = "shakePlayer 2s ease";
+              computerHand.style.animation = "shakeComputer 2s ease";
+            });
+          });
+        };
+      
+    };
