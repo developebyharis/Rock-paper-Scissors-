@@ -30,7 +30,10 @@ const playMatch = () => {
     const computerOption = ["rock", "paper", "scissors"];
     options.forEach(option => {
         option.addEventListener("click", function() {
-            
+            // computer choice 
+            const computerNumber = Math.floor(Math.random() * 3);
+            const computerChoice = computerOption[computerNumber];
+
         })
     })
 
